@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>State</th>
+    <th>Session</th>
+    <th>Bill Number</th>
+    <th>Title</th>
+    <th>Link</th>
+  </tr>
+<% @bills.each do |bill| %>
+    <tr>
+      <td><%= bill.bill_jurisdiction%></td>
+      <td><%= bill.bill_session %></td>
+      <td><%= bill.bill_identifier %></td>
+      <td><%= bill.bill_title %></td>
+      <td><%= link_to("Details", bill_path(:id => bill.bill_id)) %></td>
+    </tr>
+<% end %>
+</table>
