@@ -1,0 +1,18 @@
+<p>This collection has <%= @collection_length %> entries</p>
+<p>ID is <%= @collection_id %>
+<button onclick="loadCollection(<%= @collection_id %>)">Load Collection</button>
+
+<table id="collectionTable">
+  <tr>
+    <th>State</th>
+    <th>Identifier</th>
+    <th>Session</th>
+    <th>Title</th>
+    <th>Link</th>
+  </tr>
+</table>
+
+<% if false %>
+<button onclick="viewCollection(<%= @collection.collection_hash.to_json %>)">Load Collection</button>
+
+<% end %>

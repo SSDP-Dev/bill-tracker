@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bill_identifier: MyString
+  bill_title: MyString
+  bill_session: MyString
+  bill_jurisdiction: MyString
+  bill_id: MyString
+
+two:
+  bill_identifier: MyString
+  bill_title: MyString
+  bill_session: MyString
+  bill_jurisdiction: MyString
+  bill_id: MyString

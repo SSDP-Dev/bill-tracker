@@ -1,0 +1,5 @@
+<% @collections.each do |collection| %>
+<p>Name: <%= collection.name %></p>
+<p>Created at: <%= collection.created_at %></p>
+<p><%=link_to("View", "/collections/show/#{collection.id}")%>
+<% end %>

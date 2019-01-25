@@ -1,0 +1,55 @@
+<h1>Openerr Legislation Tracker</h1>
+<p>
+  We use data from <a href="https://openstates.org/" target="_blank" rel="noopener noreferrer">Open States</a>
+  to power state legislation tracking for people doing good political work
+</p>
+<h2>Instructions</h2>
+<h3>Creating Collections</h3>
+<p> 
+Select a state you're interested in (or all states) and a date range and take a snapshot of the Open States database.
+</p>
+<p>This snapshot (basically: the results of the query at the time it was run) will be preserved on the Openerr database.</p>
+<p>You can view all the collections <a href="/collections/all">here</a>.</p>
+<p>
+When you to click <strong>view</strong> a collection, you'll be able to see metadata about that collection (such as how large it is).
+If you click <strong>load collection</strong> - that collection will get loaded into your page, and you'll be able to scroll through the results of the snapshot you took. 
+Coming soon: sorting, better interface, etc. etc.
+</p>
+<p>Depending on how large your collection is, it may take some time to load the entirety. We'll add caching and faster browsing soon</p>
+<h3>Viewing Individual Bills</h3>
+<p>If you click <strong>Read More</strong> on a bill item, you'll be taken to the bill's <strong>show</strong> page.</p>
+<p>
+  On a bill's <strong>show</strong> page, you can view its:
+  <ul>
+    <li>identifier</li>
+    <li>title</li>
+    <li>classification</li>
+    <li>subject tags</li>
+    <li>session</li>
+    <li>jurisdiction</li>
+    <li>last updated date</li>
+    <li>actions</li>
+    <li>votes</li>
+    <li>associated documents</li>
+  </ul>
+</p>
+<p>
+<h3>Following Bills</h3>
+On the <strong>show</strong> page, you can choose to <strong>follow</strong> a bill. 
+If you hit the follow button, if will show up in your <a href="/following">following</a> page
+</p>
+<p>You should use the <strong>following</strong> page to track bills that interest you.</p> 
+<p>
+The following page serves as a quick list of bills you're interested in. 
+From there, you can inspect a bill's <strong>show</strong> page, and view the data (or unfollow it).
+</p>
+<h3>Checking Activity</h3>
+<p>
+If you visit the <a href="/activity">activity</a> page, you'll be prompted with a date picker.
+Select a date, and you'll see a list of your followed bills with activity listed since that date.
+</p>
+<p>
+The activity page can be slow, depending on how many bills you're following. 
+At the moment, it needs to query the Open States database for each of your bills to check for activity. 
+It isn't very clever about it, but one day this will be much faster and cleverer. Be patient with it, it's learning. 
+</p>

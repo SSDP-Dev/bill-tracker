@@ -1,0 +1,7 @@
+<form onsubmit="return false">
+  <label for="date">See bills with activity since:</label>
+  <input id="date" type="date" name="updatedSinceDate" value="<%= Date.today %>">
+  <input type="submit" value="Submit" onclick="getActive(<%= @bills %>)">
+</form> 
+
+<div id="results"></div>

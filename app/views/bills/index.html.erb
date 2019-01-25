@@ -1,0 +1,38 @@
+<p><%= @response["data"]["bills"]["totalCount"]%> bills meet this criteria.</p>
+  <%= form_tag("/bills", method: "get") do |form| %>
+    See bills updated since:
+    <input type="date" name="updatedSinceDate" value="<%= @date %>">
+    <%= submit_tag("Go")%>
+    <%= hidden_field_tag "cursor[start]", @response["data"]["bills"]["pageInfo"]["startCursor"]%>
+    <%= hidden_field_tag "cursor[end]", @response["data"]["bills"]["pageInfo"]["endCursor"]%>
+    <%= submit_tag("Previous") %>
+    <%= submit_tag("Next") %>
+  <% end %>
+<table>
+  <tr>
+    <th>State</th>
+    <th>Session</th>
+    <th>Bill Number</th>
+    <th>Title</th>
+    <th>Sponsor</th>
+    <th>Link</th>
+  </tr>
+  <% @response["data"]["bills"]["edges"].each do |bill| %>
+    <tr>
+      <td><%= bill["node"]["legislativeSession"]["jurisdiction"]["name"] %></td>
+      <td><%= bill["node"]["legislativeSession"]["identifier"] %></td>
+      <td><%= bill["node"]["identifier"] %></td>
+      <td><%= bill["node"]["title"] %></td>
+      <td>
+        <ul>
+          <%bill["node"]["sponsorships"].each do |sponsor| %>
+            <% if sponsor["primary"] %>
+              <li><%= sponsor["name"] %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </td>
+      <td><%= link_to("Read more", bill_path(:id => bill["node"]["id"])) %></td>
+    </tr>
+  <% end %>
+</table>
