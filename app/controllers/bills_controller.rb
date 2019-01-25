@@ -1,28 +1,25 @@
 require 'httparty'
 class BillsController < ApplicationController
     def index
-        url = 'https://openstates.org/graphql'
-        headers = { "X-API-KEY" => Rails.application.credentials.open_states_api_key, "Content-type" => "application/json" }
-        @cursor = params[:cursor]
-        @date = params[:updatedSinceDate]
-        direction = params[:commit]
-        body = index_query_constructor(@cursor, direction, @date)
-            response = HTTParty.post(
-                url, 
-                :body => body,
-                :headers => headers)
-            @response = response.parsed_response
+        # url = 'https://openstates.org/graphql'
+        # headers = { "X-API-KEY" => Rails.application.credentials.open_states_api_key, "Content-type" => "application/json" }
+        # @cursor = params[:cursor]
+        # @date = params[:updatedSinceDate]
+        # direction = params[:commit]
+        # body = index_query_constructor(@cursor, direction, @date)
+        #     response = HTTParty.post(
+        #         url, 
+        #         :body => body,
+        #         :headers => headers)
+        #     @response = response.parsed_response
     end
 
-    def activity
-        @active_bills = []
-        @bills = Bill.all
-        @date = params[:updatedSinceDate]
-        @bills.each do |b|
-            if b.get_active(@date)
-                @active_bills.push(b)
-            end
-        end
+    def api 
+        render :json => Bill.find_by(bill_id: params[:id]).get_active(params[:date])
+    end
+
+    def activity    
+        @bills = Bill.all.to_json
     end
 
     def show
@@ -118,6 +115,7 @@ class BillsController < ApplicationController
     end
 
     private 
+
     def index_query_constructor(cursor, direction, date)
         if (cursor and direction == "Next")
             body = {query: "{bills(updatedSince : \"#{date}\", first: 100, after: \"#{cursor[:end]}\") \

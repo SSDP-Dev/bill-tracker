@@ -1,13 +1,7 @@
-<%= form_tag("/activity", method: "get") do |form| %>
-  See bills with activity since:
-  <input type="date" name="updatedSinceDate" value="<%= @date %>">
-  <%= submit_tag("Go")%>
-<% end %>
-<ul>
-  <% @active_bills.each do |bill| %>
-    <li><%= link_to(bill.bill_title, bill_path(:id => bill.bill_id)) %></li>
-  <% end %>
-</ul>
-<% if @active_bills.length < 1 and @date %>
-  None of the bills you're following have been active since <%= @date %>
-<% end %>
+<form onsubmit="return false">
+  <label for="date">See bills with activity since:</label>
+  <input id="date" type="date" name="updatedSinceDate" value="<%= Date.today %>">
+  <input type="submit" value="Submit" onclick="getActive(<%= @bills %>)">
+</form> 
+
+<div id="results"></div>

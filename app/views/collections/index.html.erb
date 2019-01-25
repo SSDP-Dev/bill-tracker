@@ -1,0 +1,37 @@
+<h1>Collections</h1>
+<p>
+  When you create <strong>collections</strong>, you create a snapshot of the data from Open States which reflects these parameters. 
+  The process queries Open States with your search, and compiles all the results from Open States' API pagination. 
+</p>
+<p>
+  Pagination through Open States is limited to a max of 100 results at a time, so if your query selects 42000 options, the process will paginate 420 times. 
+  <p>
+    To help reduce stress on Open States' bandwidth, the process waits ~ 3 seconds between each page request. 
+  </p>
+  <p>
+    So if you have 420 pages to pull down, it would take about 21 minutes to process your collection request, not counting latency and other network variables.
+  </p>
+  <p>
+    Eventually, this form will give you a preview of how many results to expect, along with a time estimate, and give you options to make choices based on how many results are listed.
+  </p>
+  <h2>See your saved collections</h2>
+  <p><%= link_to("See saved collections", "/collections/all")%></p>
+  <h2>Create a new collection</h2>
+  <%= form_tag("/collections/new", method: "get") do |form| %>
+    <p>Create a collection of bills meeting the criteria:</p>
+    <label for="jurisdiction">Jurisdiction:</label>
+    <select id="jurisdiction" name="jurisdiction">
+      <option value="">All States</option>
+      <% @jurisdictions.each do |jurisdiction| %>
+        <option value="<%= jurisdiction["node"]["id"] %>">
+          <%= jurisdiction["node"]["name"]%>
+        </option>
+      <% end %>
+    </select><br />
+    <label for="updatedSinceDate">Updated since:</label>
+    <input type="date" id="updatedSinceDate" name="updatedSinceDate" value="<%= @date %>"><br />
+    <hr />
+    <label for="collectionName">Name your collection:</label>
+    <input id="collectionName" name="collectionName"><br />
+    <%= submit_tag("Go")%> (This may take a while)
+  <% end %>
